@@ -125,6 +125,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+    case WM_CREATE:
+        MoveWindow(hWnd, 50, 50, 400, 300, true);
+        SetWindowText(hWnd, L"Привет!");
+        break;
+    case WM_MOUSEMOVE:
+    {
+        int x = LOWORD(lParam);
+        int y = HIWORD(lParam);
+        TCHAR buff[50];
+        swprintf_s(buff, 50, L"x = %d; y = %d", x, y);
+        SetWindowText(hWnd, buff);
+    }
+        break;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
